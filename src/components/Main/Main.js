@@ -158,9 +158,14 @@ const setWwithdraw = (e)=>{
 var Reserves = useSelector((state)=>{
   return state.adoptReducer.Reserves;
 })
+var TotalSupply = useSelector((state)=>{
+  return state.adoptReducer.TotalSupply;
+})
 
-var VS2$ = Reserves && price && Math.sqrt(Reserves[0]*price.price_BNB*Reserves[1]*price.price/(Reserves[0]+Reserves[1])) 
+//var VS2$ = Reserves && price && Math.sqrt(Reserves[0]*price.price_BNB*Reserves[1]*price.price/(Reserves[0]+Reserves[1])) 
 var YOLO$ = price && price.price;
+var VS2$ = Reserves && (Reserves[1]*YOLO$*2/TotalSupply)
+
 console.log("VS2",VS2$)
 // // console.log("reserves BNB",Reserves && Reserves[0]*price.price_BNB)
 // console.log("price_BNB",price && price.price_BNB)

@@ -144,10 +144,10 @@ export const balanceOfYearly = createAsyncThunk("balanceOfYearly",
 export const reservesInV2 = createAsyncThunk("reservesInV2",
     async ({contract, address})=>{
         try {
- 
+            const TotalSupply = await contract.methods.totalSupply().call()
             const Reserves = await contract.methods.getReserves().call()
-        
-            return Reserves;
+            
+            return {Reserves,TotalSupply};
 
         } catch (error) {
             console.log("Error in ArrayThunk",error)
@@ -532,7 +532,8 @@ const adoptSlice = createSlice({
         cacheTimeWeekly:null,
         decimalsOfVs2: null,
         arrayAwait : false,
-        toggle: false
+        toggle: false,
+        TotalSupply : null,
 
     },
     reducers: {
@@ -559,7 +560,8 @@ const adoptSlice = createSlice({
              state.cacheTimeYearly = action.payload.cacheTime
          },
          [reservesInV2.fulfilled] : (state,action)=>{
-            state.Reserves = action.payload
+            state.Reserves = action.payload.Reserves
+            state.TotalSupply = action.payload.TotalSupply
  
         },
          [earnedFromMonthly.fulfilled] : (state,action)=>{
