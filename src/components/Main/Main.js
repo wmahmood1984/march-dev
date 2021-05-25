@@ -33,9 +33,9 @@ const labels = [
 
 const Main = ({ headerImage, middleImage, footerImage, price}) => {
 const dispatch = useDispatch()
-const [WstackValue, setWStackValue] = useState(0)
-const [MstackValue, setMStackValue] = useState(0)
-const [stackValue, setStackValue] = useState(0)
+const [WstackValue, setWStackValue] = useState()
+const [MstackValue, setMStackValue] = useState()
+const [stackValue, setStackValue] = useState()
 
 
 
@@ -45,11 +45,15 @@ const [stackValue, setStackValue] = useState(0)
 const StakingToken = useSelector((state)=>{
   return state.adoptReducer.VS2Contract;
 });
+
+const web3 = useSelector((state)=>{
+  return state.adoptReducer.web3;
+});
 const sender = useSelector((state)=>{
   return state.adoptReducer.address;
 });
 
-
+//console.log("web3",web3 && web3.utils.toWei(toString(stackValue),"ether"))
 
 
 const YOLOYearly = useSelector((state)=>{
@@ -107,9 +111,6 @@ const setMwithdraw = (e)=>{
   dispatch(MonthlyWithdraw({MstackValue,YOLOMonthly,sender}))
   setMStackValue("")
 }
-
-
-
 
 
 
@@ -203,6 +204,7 @@ const RewardPerToken = useSelector((state)=>{
 const decimalsOfVs2 = useSelector((state)=>{
   return state.adoptReducer.decimalsOfVs2;
 });
+
 
 
 
