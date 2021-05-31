@@ -49,6 +49,9 @@ const StakingToken = useSelector((state)=>{
 const web3 = useSelector((state)=>{
   return state.adoptReducer.web3;
 });
+
+
+
 const sender = useSelector((state)=>{
   return state.adoptReducer.address;
 });
@@ -261,7 +264,7 @@ const WStakeTime = useSelector((state)=>{
 
 
 
-console.log("time in main",WStakeTime)
+
 
 
 

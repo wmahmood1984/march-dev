@@ -11,7 +11,7 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 
 
-
+var web3;
 export const initWeb3 = createAsyncThunk(
     "InitWeb3",
     async(a,thunkApi)=>{
@@ -19,7 +19,7 @@ export const initWeb3 = createAsyncThunk(
 
         try {
             if(Web3.givenProvider){
-                const web3 = new Web3(Web3.givenProvider);
+                web3 = new Web3(Web3.givenProvider);
                 await Web3.givenProvider.enable()
                 const networkId = await web3.eth.net.getId()
                 const VS2Address = "0x3FB2dD9fC94fBf559794D5bDbD2A4920C0f2239c"
@@ -332,11 +332,14 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
         try {
 
             var value = new BigNumber(stackValue*1000000000000000000)
-            const result = await StakingToken.methods.approve(address,value).send({from : sender})
+            var conString = stackValue.toString()
+            //console.log("time in main",web3.utils.toWei("1","ether"))
+            console.log("string",web3.utils.toWei(conString,"ether"))
+            const result = await StakingToken.methods.approve(address,web3.utils.toWei(conString,"ether")).send({from : sender})
         //    const result = await StakingToken.methods.approve(address,stackValue).send({from : sender})
             
             console.log("data",address)
-            return result;
+  //          return result;
 
         } catch (error) {
             console.log("Error in sendDataThunk",error)
