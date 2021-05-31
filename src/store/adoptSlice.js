@@ -333,6 +333,8 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
 
             var value = new BigNumber(stackValue*1000000000000000000)
             const result = await StakingToken.methods.approve(address,value).send({from : sender})
+        //    const result = await StakingToken.methods.approve(address,stackValue).send({from : sender})
+            
             console.log("data",address)
             return result;
 
@@ -345,8 +347,9 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
 export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
     async ({Maddress,MstackValue , StakingToken,sender})=>{
         try {
-            var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await StakingToken.methods.approve(Maddress,value).send({from : sender})
+     //       var value = new BigNumber(MstackValue*1000000000000000000)
+   //         const result = await StakingToken.methods.approve(Maddress,value).send({from : sender})
+            const result = await StakingToken.methods.approve(Maddress,MstackValue).send({from : sender})
             return result;
 
         } catch (error) {
@@ -358,9 +361,10 @@ export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
 export const WeeklyApproval = createAsyncThunk("WeeklyApproval",
     async ({Waddress,WstackValue , StakingToken,sender})=>{
         try {
-            var value = new BigNumber(WstackValue*1000000000000000000)
+       //     var value = new BigNumber(WstackValue*1000000000000000000)
 //            console.log("from server",StakingToken)
-            const result = await StakingToken.methods.approve(Waddress,value).send({from : sender})
+            //const result = await StakingToken.methods.approve(Waddress,value).send({from : sender})
+            const result = await StakingToken.methods.approve(Waddress,WstackValue).send({from : sender})
             return result;
 
         } catch (error) {
@@ -374,6 +378,7 @@ export const YearlyStaking = createAsyncThunk("YearlyStaking",
         try {
 
 //            var value = new BigNumber(stackValue*1000000000000000000)
+//            const result = await YOLOYearly.methods.stake(stackValue).send({from : sender})
             const result = await YOLOYearly.methods.stake(stackValue).send({from : sender})
             return result;
 
