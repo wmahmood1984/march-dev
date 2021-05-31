@@ -350,9 +350,10 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
 export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
     async ({Maddress,MstackValue , StakingToken,sender})=>{
         try {
+            var conString = MstackValue.toString()
      //       var value = new BigNumber(MstackValue*1000000000000000000)
    //         const result = await StakingToken.methods.approve(Maddress,value).send({from : sender})
-            const result = await StakingToken.methods.approve(Maddress,MstackValue).send({from : sender})
+            const result = await StakingToken.methods.approve(Maddress,web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -364,10 +365,11 @@ export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
 export const WeeklyApproval = createAsyncThunk("WeeklyApproval",
     async ({Waddress,WstackValue , StakingToken,sender})=>{
         try {
+            var conString = WstackValue.toString()
        //     var value = new BigNumber(WstackValue*1000000000000000000)
 //            console.log("from server",StakingToken)
             //const result = await StakingToken.methods.approve(Waddress,value).send({from : sender})
-            const result = await StakingToken.methods.approve(Waddress,WstackValue).send({from : sender})
+            const result = await StakingToken.methods.approve(Waddress,web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -379,10 +381,10 @@ export const WeeklyApproval = createAsyncThunk("WeeklyApproval",
 export const YearlyStaking = createAsyncThunk("YearlyStaking",
     async ({stackValue,YOLOYearly,sender})=>{
         try {
-
+            var conString = stackValue.toString()
 //            var value = new BigNumber(stackValue*1000000000000000000)
 //            const result = await YOLOYearly.methods.stake(stackValue).send({from : sender})
-            const result = await YOLOYearly.methods.stake(stackValue).send({from : sender})
+            const result = await YOLOYearly.methods.stake(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -394,9 +396,9 @@ export const YearlyStaking = createAsyncThunk("YearlyStaking",
 export const MonthlyStaking = createAsyncThunk("MonthlyStaking",
     async ({MstackValue,YOLOMonthly,sender})=>{
         try {
-
+            var conString = MstackValue.toString()
 //            var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await YOLOMonthly.methods.stake(MstackValue).send({from : sender})
+            const result = await YOLOMonthly.methods.stake(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -408,9 +410,9 @@ export const MonthlyStaking = createAsyncThunk("MonthlyStaking",
 export const WeeklyStaking = createAsyncThunk("WeeklyStaking",
     async ({WstackValue,YOLOWeekly,sender})=>{
         try {
-
+            var conString = WstackValue.toString()
 //            var value = new BigNumber(WstackValue*1000000000000000000)
-            const result = await YOLOWeekly.methods.stake(WstackValue).send({from : sender})
+            const result = await YOLOWeekly.methods.stake(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -464,8 +466,9 @@ export const WeeklyClaim = createAsyncThunk("WeeklyClaim",
 export const YearlyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({stackValue,YOLOYearly,sender})=>{
         try {
+            var conString = stackValue.toString()
 //            var value = new BigNumber(stackValue*1000000000000000000)
-            const result = await YOLOYearly.methods.withdraw(stackValue).send({from : sender})
+            const result = await YOLOYearly.methods.withdraw(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -477,8 +480,9 @@ export const YearlyWithdraw = createAsyncThunk("YearlyWithdraw",
 export const MonthlyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({MstackValue,YOLOMonthly,sender})=>{
         try {
+            var conString = MstackValue.toString()
  //           var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await YOLOMonthly.methods.withdraw(MstackValue).send({from : sender})
+            const result = await YOLOMonthly.methods.withdraw(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
@@ -490,8 +494,9 @@ export const MonthlyWithdraw = createAsyncThunk("YearlyWithdraw",
 export const WeeklyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({WstackValue,YOLOWeekly,sender})=>{
         try {
+            var conString = WstackValue.toString()
 //            var value = new BigNumber(WstackValue*1000000000000000000)
-            const result = await YOLOWeekly.methods.withdraw(WstackValue).send({from : sender})
+            const result = await YOLOWeekly.methods.withdraw(web3.utils.toWei(conString,"ether")).send({from : sender})
             return result;
 
         } catch (error) {
