@@ -166,7 +166,7 @@ var TotalSupply = useSelector((state)=>{
 var YOLO$ = price && price.price;
 var VS2$ = Reserves && (Reserves[1]*YOLO$*2/TotalSupply)
 
-console.log("VS2",VS2$)
+
 // // console.log("reserves BNB",Reserves && Reserves[0]*price.price_BNB)
 // console.log("price_BNB",price && price.price_BNB)
 // // console.log("reserve YOLO",Reserves && Reserves[1]*price.price)
@@ -261,7 +261,7 @@ const WStakeTime = useSelector((state)=>{
 
 
 
-
+console.log("time in main",WStakeTime)
 
 
 
@@ -287,6 +287,8 @@ const WStakeTime = useSelector((state)=>{
     totalStaked: 0,
     earlyUnstakeFee: 50,
   });
+
+
 
   return (
     <div className="main">
@@ -378,7 +380,7 @@ const WStakeTime = useSelector((state)=>{
             </div>
             <div className="countdown">
               <img src={clock} className="icon" alt="Clock Icon" />
-              <div className="value"><WeeklyTimer stakeTime={WStakeTime && WStakeTime}></WeeklyTimer></div>
+              <div className="value"><WeeklyTimer stakeTime={WStakeTime}></WeeklyTimer></div>
             </div>
           </div>
           <div className="chart monthly">

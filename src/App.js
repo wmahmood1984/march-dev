@@ -32,13 +32,13 @@ function App() {
   );
 
 
-  const address = useSelector((state)=>{
-      return state.adoptReducer.YearlyContract
-   })
+  // const address = useSelector((state)=>{
+  //     return state.adoptReducer.YearlyContract
+  //  })
 
-   const toggle = useSelector((state)=>{
-    return state.adoptReducer.toggle
-  })
+  //  const toggle = useSelector((state)=>{
+  //   return state.adoptReducer.toggle
+  // })
 
  
 
@@ -66,7 +66,7 @@ function App() {
 
 
     // eslint-disable-next-line
-  }, [toggle])
+  }, [])
 
  
   return (

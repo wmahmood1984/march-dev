@@ -1,9 +1,9 @@
 import Web3 from 'web3'
-import {VS2} from '../deployed/VS2'
-import {YOLO} from '../deployed/YOLO'
-import {YOLOYearly} from '../deployed/YOLOYearly'
-import {YOLOMonthly} from '../deployed/YOLOMonthly'
-import {YOLOWeekly} from '../deployed/YOLOWeekly'
+import {VS2} from './src/deployed/VS2'
+import {YOLO} from './src/deployed/YOLO'
+import {YOLOYearly} from './src/deployed/YOLOYearly'
+import {YOLOMonthly} from './src/deployed/YOLOMonthly'
+import {YOLOWeekly} from './src/deployed/YOLOWeekly'
 import BigNumber  from 'bignumber.js'
 
 
@@ -331,8 +331,8 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
     async ({address,stackValue , StakingToken,sender})=>{
         try {
 
-            var value = new BigNumber(stackValue*1000000000000000000)
-            const result = await StakingToken.methods.approve(address,value).send({from : sender})
+//            var value = new BigNumber(stackValue*1000000000000000000)
+            const result = await StakingToken.methods.approve(address,bNumber(stackValue)).send({from : sender})
             console.log("data",address)
             return result;
 
@@ -345,8 +345,8 @@ export const YearlyApproval = createAsyncThunk("YearlyApproval",
 export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
     async ({Maddress,MstackValue , StakingToken,sender})=>{
         try {
-            var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await StakingToken.methods.approve(Maddress,value).send({from : sender})
+//            var value = new BigNumber(MstackValue*1000000000000000000)
+            const result = await StakingToken.methods.approve(Maddress,bNumber(MstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -358,9 +358,9 @@ export const MonthlyApproval = createAsyncThunk("MonthlyApproval",
 export const WeeklyApproval = createAsyncThunk("WeeklyApproval",
     async ({Waddress,WstackValue , StakingToken,sender})=>{
         try {
-            var value = new BigNumber(WstackValue*1000000000000000000)
+//            var value = new BigNumber(WstackValue*1000000000000000000)
 //            console.log("from server",StakingToken)
-            const result = await StakingToken.methods.approve(Waddress,value).send({from : sender})
+            const result = await StakingToken.methods.approve(Waddress,bNumber(WstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -374,7 +374,7 @@ export const YearlyStaking = createAsyncThunk("YearlyStaking",
         try {
 
 //            var value = new BigNumber(stackValue*1000000000000000000)
-            const result = await YOLOYearly.methods.stake(stackValue).send({from : sender})
+            const result = await YOLOYearly.methods.stake(bNumber(stackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -388,7 +388,7 @@ export const MonthlyStaking = createAsyncThunk("MonthlyStaking",
         try {
 
 //            var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await YOLOMonthly.methods.stake(MstackValue).send({from : sender})
+            const result = await YOLOMonthly.methods.stake(bNumber(MstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -402,7 +402,7 @@ export const WeeklyStaking = createAsyncThunk("WeeklyStaking",
         try {
 
 //            var value = new BigNumber(WstackValue*1000000000000000000)
-            const result = await YOLOWeekly.methods.stake(WstackValue).send({from : sender})
+            const result = await YOLOWeekly.methods.stake(bNumber(WstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -457,7 +457,7 @@ export const YearlyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({stackValue,YOLOYearly,sender})=>{
         try {
 //            var value = new BigNumber(stackValue*1000000000000000000)
-            const result = await YOLOYearly.methods.withdraw(stackValue).send({from : sender})
+            const result = await YOLOYearly.methods.withdraw(bNumber(stackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -470,7 +470,7 @@ export const MonthlyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({MstackValue,YOLOMonthly,sender})=>{
         try {
  //           var value = new BigNumber(MstackValue*1000000000000000000)
-            const result = await YOLOMonthly.methods.withdraw(MstackValue).send({from : sender})
+            const result = await YOLOMonthly.methods.withdraw(bNumber(MstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -483,7 +483,7 @@ export const WeeklyWithdraw = createAsyncThunk("YearlyWithdraw",
     async ({WstackValue,YOLOWeekly,sender})=>{
         try {
 //            var value = new BigNumber(WstackValue*1000000000000000000)
-            const result = await YOLOWeekly.methods.withdraw(WstackValue).send({from : sender})
+            const result = await YOLOWeekly.methods.withdraw(bNumber(WstackValue)).send({from : sender})
             return result;
 
         } catch (error) {
@@ -492,7 +492,10 @@ export const WeeklyWithdraw = createAsyncThunk("YearlyWithdraw",
     }
     )
 
-
+function bNumber (value){
+    var bValue = new BigNumber(value*100000000000000000)
+    return bValue;
+}
 
 
 
