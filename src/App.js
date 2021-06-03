@@ -71,14 +71,14 @@ function App() {
  
   return (
     <div className={`App ${loading ? "loading" : ""}`}>
-      {/* <Main
+      <Main
         headerImage={headerImage}
         footerImage={footerImage}
         middleImage={middleImage}
         //drizzle = {null}
         //drizzleState = {null}
         price={price}
-      /> */} can you please contact at my whatsapp 0092 300 8545016
+      />
     </div>
   );
 }
